@@ -7,7 +7,6 @@ import SideBarPage from './(chat)/side-bar/page';
 const Chatpage = () => {
   return (
     <div>
-      1
       <SearchBarPage />
       <SideBarPage />
       <AllChatPage />
