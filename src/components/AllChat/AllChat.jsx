@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const AllChat = () => {
-  return (
-    <div>AllChat</div>
-  )
-}
+  return <div>AllChat2</div>;
+};
 
-export default AllChat
+export default AllChat;
