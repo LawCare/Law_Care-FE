@@ -6,13 +6,12 @@ import womanicon from '../../assets/icons/woman icon.png';
 const AllChat = () => {
   return (
     <div className="bg-gray-100 min-h-screen w-full p-4 ">
-      {/* 상단 헤더 */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-extrabold text-blue-900">모든 채팅</h2>
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center bg-white rounded-lg p-4">
+        <div className="flex items-center bg-white rounded-lg p-4 border-2 border-custom-dark-blue">
           <div className="flex-shrink-0">
             <Image src={manicon} alt="Consultant 1" width={70} height={70} className="rounded-full" />
           </div>
