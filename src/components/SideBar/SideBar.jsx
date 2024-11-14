@@ -1,21 +1,33 @@
+import Image from 'next/image';
 import React from 'react';
+import home from '../../assets/icons/home.png';
+import Chatlist from '../../assets/icons/Chat list.png';
+import Counselorlist from '../../assets/icons/Counselor list.png';
+import Reservationlist from '../../assets/icons/Reservation list.png';
+import Provisionoflegalinformation from '../../assets/icons/Provision of legal information.png';
+import video from '../../assets/icons/video.png';
 
 const SideBar = () => {
   return (
-    <div className="flex flex-col items-center bg-gradient-to-b from-blue-500 to-blue-900 h-screen w-16 space-y-4 py-4">
-      <button
-        className="p-2 rounded-full hover:bg-blue-300 bg-cover bg-center"
-        style={{ backgroundImage: "url('/path/to/home.png')" }}
-      >
-        {/* 아이콘 이미지가 배경으로 설정됨 */}
+    <div className="flex flex-col items-center bg-gradient-to-b from-custom-light-blue to-custom-dark-blue h-screen w-20 space-y-4 py-4 ">
+      <button className="p-2 mt-28">
+        <Image src={home} alt="Home" width={50} height={50} />
       </button>
-      <button
-        className="p-2 rounded-full hover:bg-blue-300 bg-cover bg-center"
-        style={{ backgroundImage: "url('/path/to/chat.png')" }}
-      >
-        {/* 다른 아이콘 이미지 */}
+      <button className="p-2">
+        <Image src={Chatlist} alt="Chatlist" width={50} height={50} />
       </button>
-      {/* 추가 버튼들도 동일한 방식으로 추가 */}
+      <button className="p-2">
+        <Image src={Counselorlist} alt="Counselorlist" width={50} height={50} />
+      </button>
+      <button className="p-2">
+        <Image src={Reservationlist} alt="Reservationlist" width={50} height={50} />
+      </button>
+      <button className="p-2">
+        <Image src={Provisionoflegalinformation} alt="Provisionoflegalinformation" width={50} height={50} />
+      </button>
+      <button className="p-2">
+        <Image src={video} alt="video" width={50} height={50} />
+      </button>
     </div>
   );
 };
