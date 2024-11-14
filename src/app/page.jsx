@@ -17,7 +17,7 @@ const Chatpage = () => {
         </header>
 
         <div className="flex flex-grow">
-          <section className="w-1/4 border-r">
+          <section className="w-[18%] border-r">
             <AllChatPage />
           </section>
           <section className="flex-grow">
