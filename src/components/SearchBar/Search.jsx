@@ -8,7 +8,7 @@ const Search = () => {
     <div className="flex items-center justify-start bg-blue-100 h-16">
       {/* 로고 */}
       <div className="flex-shrink-0 ml-4">
-        <Image src={logo} alt="LAWCARE Logo" width={120} height={20} />
+        <Image src={logo} alt="LAWCARE Logo" width={140} height={20} />
       </div>
 
       {/* 검색창 */}
