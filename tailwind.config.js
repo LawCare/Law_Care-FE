@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,6 +16,9 @@ module.exports = {
         'custom-dark-blue': '#00203A',
         'custom-sky-blue': '#EFF7FF'
       }
+    },
+    screens: {
+      'laptop' : '1024px'
     }
   },
   plugins: []

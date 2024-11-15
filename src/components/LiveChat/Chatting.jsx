@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import manicon from '../../assets/icons/man icon.png';
 
-const ChatInterface = () => {
+const Chatting = () => {
   return (
     <div className="max-w-6xl mx-auto p-4 bg-gray-50">
       <div className="text-center text-gray-500 text-sm mb-16">
@@ -11,7 +11,7 @@ const ChatInterface = () => {
         开始咨询了。应用自动翻译。
       </div>
 
-      <div className="space-y-36 p-1">
+      <div className="space-y-24 p-1">
         <div className="flex items-start ">
           <Image src={manicon} alt="User" width={40} className='m-1' />
           <div className="flex flex-col">
@@ -68,4 +68,4 @@ const ChatInterface = () => {
   );
 };
 
-export default ChatInterface;
+export default Chatting;
