@@ -5,8 +5,8 @@ import ExplainWord from "@/components/ChatInfo/ExplainWord"
 const ChatInfoPage = () => {
   return (
     <div>
-      <ChatInfo/>
       <ExplainWord/>
+      <ChatInfo/>
     </div>
   )
 }
