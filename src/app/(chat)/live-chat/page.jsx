@@ -4,6 +4,7 @@ const ChattingPage = () => {
   return (
     <div>
       <Chatting/>
+
     </div>
   )
 }
