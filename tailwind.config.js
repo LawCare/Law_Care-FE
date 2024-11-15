@@ -13,7 +13,9 @@ module.exports = {
         'custom-blue': '#0057A0',
         'custom-light-blue': '#0057A0',
         'custom-dark-blue': '#00203A',
-        'custom-sky-blue': '#EFF7FF'
+        'custom-sky-blue': '#EFF7FF',
+        'custom-navy': '#01203A',
+        'custom-navy2': '#01203b'
       }
     }
   },
