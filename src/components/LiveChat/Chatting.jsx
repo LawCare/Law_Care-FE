@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   TRANSLATIONS,
   LANGUAGES,
   LANGUAGE_LABELS,
   HEADER_MESSAGE,
-  INITIAL_GREETING } from './ChatData';
+  INITIAL_GREETING
+} from './ChatData';
 
 const LegalChat = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES.ZH);
   const [dummyIndex, setDummyIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // 컴포넌트가 마운트될 때 초기 인사말을 1초 후에 표시
   useEffect(() => {
-    setMessages([{
-      id: 0,
-      sender: 'admin',
-      messages: INITIAL_GREETING,
-      timestamp: new Date()
-    }]);
+    const timer = setTimeout(() => {
+      setMessages([{
+        id: 0,
+        sender: 'admin',
+        messages: INITIAL_GREETING,
+        timestamp: new Date()
+      }]);
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const findMatchingResponse = (text) => {
@@ -109,6 +117,7 @@ const LegalChat = () => {
             className="p-2 text-gray-500 hover:bg-gray-100 rounded"
             onClick={handleSendMessage}
             title="더미 데이터 사용"
+            disabled={isLoading}
           >
             +
           </button>
@@ -116,11 +125,16 @@ const LegalChat = () => {
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            placeholder="메시지를 입력하세요.."
+            onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
+            placeholder="메시지를 입력하세요..."
             className="flex-1 p-2 border rounded-lg"
+            disabled={isLoading}
           />
-          <button onClick={handleSendMessage} className="p-2 bg-blue-500 text-white rounded-lg">
+          <button 
+            onClick={handleSendMessage} 
+            className="p-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-300"
+            disabled={isLoading}
+          >
             전송
           </button>
         </div>
