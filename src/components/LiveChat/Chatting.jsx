@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TRANSLATIONS, LANGUAGES, LANGUAGE_LABELS, HEADER_MESSAGE, INITIAL_GREETING } from './ChatData';
 import { Globe, Paperclip, Send, Smile } from 'lucide-react';
 
-const ChattingPage = () => {
+const Chatting = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [noteText, setNoteText] = useState('');
@@ -236,4 +236,4 @@ const ChattingPage = () => {
   );
 };
 
-export default ChattingPage;
+export default Chatting;

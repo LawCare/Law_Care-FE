@@ -1,6 +1,6 @@
-'use client'
-import ChatInfo from "@/components/ChatInfo/ChatInfo"
-import ExplainWord from "@/components/ChatInfo/ExplainWord"
+'use client';
+import ChatInfo from '@/components/ChatInfo/ChatInfo';
+import ExplainWord from '@/components/ChatInfo/ExplainWord';
 
 const ChatInfoPage = () => {
   return (
@@ -8,7 +8,7 @@ const ChatInfoPage = () => {
       <ExplainWord/>
       <ChatInfo/>
     </div>
-  )
-}
+  );
+};
 
-export default ChatInfoPage
+export default ChatInfoPage;
