@@ -103,7 +103,7 @@ export const TRANSLATIONS = {
     vi: "Tư vấn đã bắt đầu. Áp dụng dịch tự động.",
     th: "การให้คำปรึกษาเริ่มต้นแล้ว กำลังใช้การแปลอัตโนมัติ"
   };
-
+  
   export const INITIAL_GREETING = {
     ko: "안녕하세요. 법률 상담을 시작하겠습니다. 어떤 도움이 필요하신가요?",
     zh: "您好。我们开始法律咨询。需要什么帮助？",
