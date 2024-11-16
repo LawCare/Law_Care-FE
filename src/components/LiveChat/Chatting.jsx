@@ -1,71 +1,132 @@
-import Image from 'next/image';
-import React from 'react';
-import manicon from '../../assets/icons/man icon.png';
+import React, { useEffect, useState } from 'react';
+import { 
+  TRANSLATIONS,
+  LANGUAGES,
+  LANGUAGE_LABELS,
+  HEADER_MESSAGE,
+  INITIAL_GREETING } from './ChatData';
 
-const Chatting = () => {
+const LegalChat = () => {
+  const [messages, setMessages] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES.ZH);
+  const [dummyIndex, setDummyIndex] = useState(0);
+
+  useEffect(() => {
+    setMessages([{
+      id: 0,
+      sender: 'admin',
+      messages: INITIAL_GREETING,
+      timestamp: new Date()
+    }]);
+  }, []);
+
+  const findMatchingResponse = (text) => {
+    const keywords = Object.keys(TRANSLATIONS.counselor);
+    const matchedKeyword = keywords.find((keyword) => text.includes(keyword));
+    return TRANSLATIONS.counselor[matchedKeyword] || TRANSLATIONS.counselor['default'];
+  };
+
+  const handleSendMessage = () => {
+    if (!inputText.trim() && dummyIndex >= TRANSLATIONS.worker.length) {
+      setDummyIndex(0);
+    }
+
+    let messageToSend;
+    if (inputText.trim()) {
+      messageToSend = {
+        ko: inputText,
+        zh: inputText,
+        vi: inputText,
+        th: inputText
+      };
+    } else {
+      messageToSend = TRANSLATIONS.worker[dummyIndex];
+      setDummyIndex((prevIndex) => (prevIndex + 1) % TRANSLATIONS.worker.length);
+    }
+
+    const newMessage = {
+      id: messages.length + 1,
+      sender: 'user',
+      messages: messageToSend,
+      timestamp: new Date()
+    };
+
+    setMessages([...messages, newMessage]);
+    setInputText('');
+
+    const response = findMatchingResponse(messageToSend.ko);
+
+    setTimeout(() => {
+      const autoResponse = {
+        id: messages.length + 2,
+        sender: 'admin',
+        messages: response,
+        timestamp: new Date()
+      };
+      setMessages((prev) => [...prev, autoResponse]);
+    }, 1000);
+  };
+
   return (
-    <div className="max-w-6xl mx-auto p-4 bg-gray-50">
-      <div className="text-center text-gray-500 text-sm mb-16">
-        상담을 시작하였습니다. 자동번역이 적용됩니다.
-        <br />
-        开始咨询了。应用自动翻译。
+    <div className="max-w-6xl mx-auto p-4 bg-gray-50 h-screen flex flex-col">
+      <div className="text-center space-y-1">
+        <p className="text-gray-500 text-sm">{HEADER_MESSAGE.ko}</p>
+        <p className="text-gray-400 text-sm">{HEADER_MESSAGE[selectedLanguage]}</p>
       </div>
 
-      <div className="space-y-24 p-1">
-        <div className="flex items-start ">
-          <Image src={manicon} alt="User" width={40} className='m-1' />
-          <div className="flex flex-col">
-            <div className="bg-white rounded-lg p-4 shadow-sm max-w-xs">
-              <p>안녕하세요!</p>
-              <p>你好!</p>
-            </div>
-            <span className="text-xs text-gray-400 mt-1">읽음 1분 전</span>
-          </div>
-        </div>
-
-        <div className=" items-start justify-end ">
-          <div className="flex flex-col items-end">
-            <div className="bg-blue-100 rounded-md p-2 shadow-sm max-w-xs">
-              <p>你好，我没有看到我退休金，受到了不公平的待遇，需要帮助。</p>
-              <p>안녕하세요. 퇴직금을 못 받고 부당한 대우를 받고 있어요. 도움이 필요해요.</p>
-            </div>
-            <span className="text-xs text-gray-400 mt-1">읽음 1분 전</span>
-          </div>
-        </div>
-
-        <div className="flex items-start">
-          <Image src={manicon} alt="User" width={40} className='m-1'/>
-          <div className="flex flex-col">
-            <div className="bg-white rounded-lg p-4 shadow-sm max-w-xs">
-              <p>퇴직금과 미지급과 부당 대우에 대한 상황을 자세히 알려주시면 법적 대응 방안을 함께 마련하겠습니다.</p>
-              <p>如果详细告知未支付退休金和不当待遇的情况,将共同制定法律应对方案。</p>
-            </div>
-            <span className="text-xs text-gray-400 mt-1 mb-5">읽음 1분 전</span>
-          </div>
-        </div>
-
+      <div className="flex justify-center mb-4">
+        <select
+          value={selectedLanguage}
+          onChange={(e) => setSelectedLanguage(e.target.value)}
+          className="w-48 p-2 border rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          {Object.values(LANGUAGES).map((lang) => (
+            <option key={lang} value={lang}>
+              {LANGUAGE_LABELS[lang].ko} / {LANGUAGE_LABELS[lang].native}
+            </option>
+          ))}
+        </select>
       </div>
-          <div className=" bottom-0 left-0 right-0 bg-white border-t">
-            <div className="max-w-2xl mx-auto flex items-center">
-              <button className="p-2 text-gray-500">
-                <span className="text-2xl">+</span>
-              </button>
-              <input
-                type="text"
-                placeholder="메시지를 입력..."
-                className="flex-1 p-2 border-none outline-none bg-transparent"
-              />
-              <div className="space-x-2">
-                <button className="p-2 text-gray-500">Aa</button>
-                <button className="p-2 text-gray-500">😊</button>
-                <button className="p-2 text-blue-500">
-                  <span className="transform rotate-45 inline-block">▶</span>
-                </button>
+
+      <div className="flex-1 overflow-y-auto space-y-4">
+        {messages.map((message) => (
+          <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div className={`max-w-md p-3 rounded-lg ${message.sender === 'user' ? 'bg-blue-100' : 'bg-white border'}`}>
+              <div className="space-y-2">
+                <p className="break-words text-gray-900">{message.messages.ko}</p>
+                <p className="break-words text-gray-600 border-t pt-2">{message.messages[selectedLanguage]}</p>
               </div>
+              <div className="text-xs text-gray-400 mt-2">{message.timestamp.toLocaleTimeString()}</div>
             </div>
           </div>
+        ))}
+      </div>
+
+      <div className="mt-4 bg-white border-t p-4">
+        <div className="flex items-center space-x-2">
+          <button
+            className="p-2 text-gray-500 hover:bg-gray-100 rounded"
+            onClick={handleSendMessage}
+            title="더미 데이터 사용"
+          >
+            +
+          </button>
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            placeholder="메시지를 입력하세요.."
+            className="flex-1 p-2 border rounded-lg"
+          />
+          <button onClick={handleSendMessage} className="p-2 bg-blue-500 text-white rounded-lg">
+            전송
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Chatting;
+export default LegalChat;
