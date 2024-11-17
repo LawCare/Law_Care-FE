@@ -7,14 +7,14 @@ import SearchBarPage from './(chat)/search-bar/page';
 import SideBarPage from './(chat)/side-bar/page';
 
 const Chatpage = () => {
-  const [showExplainWord, setShowExplainWord] = useState(false);
+  const [showSeverancePay, setShowSeverancePay] = useState(false);
 
-  const handleExplainWordClick = () => {
-    setShowExplainWord(true);
+  const handleSeverancePayClick = () => {
+    setShowSeverancePay(true);
   };
 
   const handleBackToChatInfo = () => {
-    setShowExplainWord(false);
+    setShowSeverancePay(false);
   };
 
   return (
@@ -34,11 +34,11 @@ const Chatpage = () => {
           </section>
 
           <section className="flex-grow">
-            <ChattingPage onExplainWordClick={handleExplainWordClick} />
+            <ChattingPage onSeverancePayClick={handleSeverancePayClick} />
           </section>
 
           <aside className="w-[30%] border-l">
-            <ChatInfoPage showExplainWord={showExplainWord} onBack={handleBackToChatInfo} />
+            <ChatInfoPage showSeverancePay={showSeverancePay} onBack={handleBackToChatInfo} />
           </aside>
         </div>
       </div>
