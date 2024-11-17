@@ -4,7 +4,6 @@ import home from '../../assets/icons/home.png';
 import Chatlist from '../../assets/icons/Chatlist.png';
 import Counselorlist from '../../assets/icons/Counselorlist.png';
 import Reservationlist from '../../assets/icons/Reservationlist.png';
-import Provisionoflegalinformation from '../../assets/icons/Provisionoflegalinformation.png';
 import video from '../../assets/icons/video.png';
 
 const SideBar = () => {
@@ -21,9 +20,6 @@ const SideBar = () => {
       </button>
       <button>
         <Image src={Reservationlist} alt="Reservationlist" width={100} height={100} />
-      </button>
-      <button>
-        <Image src={Provisionoflegalinformation} alt="Provisionoflegalinformation" width={100} height={100} />
       </button>
       <button>
         <Image src={video} alt="video" width={100} height={100} />
