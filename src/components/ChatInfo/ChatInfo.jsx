@@ -35,7 +35,7 @@ const ChatInfo = () => {
                 </div>
                 <div className="mt-4 border border-gray-300 rounded-lg p-8 text-center w-full mx-auto">
                   <p className="text-sm font-semibold mt-2">김 은 채</p>
-                  <p className="text-xs text-gray-500">○○ 전문상담가</p>
+                  <p className="text-xs text-gray-500">노동법 전문상담가</p>
                   <div className="mt-2 text-xs text-gray-500 text-center">
                     <p>이메일: example@example.com</p>
                     <p>전화: 010-1234-5678</p>
@@ -66,7 +66,7 @@ const ChatInfo = () => {
               className=" border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
               onClick={() => setShowSeverancePay(true)}
             >
-              <span className="text-sm">임금</span>
+              <span className="text-sm">근로계약서</span>
               <Image src={arrow} alt="arrow" width={15} height={15} />
             </div>
           </div>
