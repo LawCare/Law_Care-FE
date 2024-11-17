@@ -1,12 +1,12 @@
 'use client';
 import ChatInfo from '@/components/ChatInfo/ChatInfo';
-import ExplainWord from '@/components/ChatInfo/ExplainWord';
+import SeverancePay from '@/components/ChatInfo/severancePay';
 
 const ChatInfoPage = () => {
   return (
     <div>
-      <ExplainWord/>
-      <ChatInfo/>
+      <ChatInfo />
+      <SeverancePay />
     </div>
   );
 };
