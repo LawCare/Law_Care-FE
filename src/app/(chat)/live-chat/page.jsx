@@ -1,3 +1,4 @@
+'use client'
 import Chatting from '@/components/LiveChat/Chatting'
 
 const ChattingPage = () => {
