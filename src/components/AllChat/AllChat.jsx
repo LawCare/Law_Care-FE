@@ -23,7 +23,7 @@ const AllChat = () => {
           </div>
           <div className="ml-4 flex-grow ">
             <h3 className="font-semibold text-[14px] text-gray-900">김은채</h3>
-            <p className=" text-[12px] text-gray-600">OO전문상담가</p>
+            <p className=" text-[12px] text-gray-600">노동법 전문상담가</p>
           </div>
           <div className="text-right">
             <span className="block text-[10px] text-gray-500 mb-1">오후 7시 30분</span>
@@ -42,7 +42,7 @@ const AllChat = () => {
           </div>
           <div className="ml-4 flex-grow">
             <h3 className="font-semibold text-[14px] text-gray-900">창다은</h3>
-            <p className="text-[12px] text-gray-600">OO전문상담가</p>
+            <p className="text-[12px] text-gray-600">임금체불 전문상담가</p>
           </div>
           <div className="text-right">
             <span className="block text-[10px] text-gray-500 mb-1">오전 10시</span>
