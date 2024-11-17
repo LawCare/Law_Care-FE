@@ -10,11 +10,19 @@ const Chatting = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [noteText, setNoteText] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES.ZH);
+  const [sourceLang, setSourceLang] = useState('ko');
+  const [targetLang, setTargetLang] = useState('zh');
   const [dummyIndex, setDummyIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeInputTab, setActiveInputTab] = useState('chat');
   const [isKorean, setIsKorean] = useState(true);
+
+  const languages = {
+    ko: '한국어',
+    zh: '중국어',
+    vi: '베트남어',
+    th: '태국어'
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,6 +45,11 @@ const Chatting = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSwap = () => {
+    setSourceLang(targetLang);
+    setTargetLang(sourceLang);
+  };
 
   const findMatchingResponse = (text) => {
     const keywords = Object.keys(TRANSLATIONS.counselor);
@@ -115,23 +128,63 @@ const Chatting = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <div className="flex justify-center my-4">
-        <select
-          value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
-          className="w-48 p-2 border rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {Object.values(LANGUAGES).map((lang) => (
-            <option key={lang} value={lang}>
-              {LANGUAGE_LABELS[lang].ko} / {LANGUAGE_LABELS[lang].native}
-            </option>
-          ))}
-        </select>
+      {/* Language Switcher */}
+      <div className="max-w-xl mx-auto p-4">
+        <div className="flex items-center space-x-2">
+          <select
+            value={sourceLang}
+            onChange={(e) => setSourceLang(e.target.value)}
+            className="flex-1 p-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {Object.entries(languages).map(([code, name]) => (
+              <option key={code} value={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+
+          <button
+            onClick={handleSwap}
+            className="p-2 rounded-full hover:bg-gray-100"
+            aria-label="Swap languages"
+          >
+            <svg 
+              className="w-5 h-5 text-gray-600" 
+              fill="none" 
+              strokeWidth="2" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                d="M8 7h12M8 7l4-4M8 7l4 4m4 4H4m16 0l-4-4m4 4l-4 4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <select
+            value={targetLang}
+            onChange={(e) => setTargetLang(e.target.value)}
+            className="flex-1 p-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {Object.entries(languages).map(([code, name]) => (
+              <option key={code} value={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mt-2 text-center text-sm text-gray-600">
+          {languages[sourceLang]} - {languages[targetLang]}
+        </div>
       </div>
+
       <div className="flex-none p-4">
         <div className="text-center space-y-1">
           <p className="text-gray-500 text-sm">{HEADER_MESSAGE.ko}</p>
-          <p className="text-gray-400 text-sm">{HEADER_MESSAGE[selectedLanguage]}</p>
+          <p className="text-gray-400 text-sm">{HEADER_MESSAGE[targetLang]}</p>
         </div>
       </div>
 
@@ -148,9 +201,9 @@ const Chatting = () => {
               }`}
             >
               <div className="space-y-2">
-                <p className="break-words text-gray-900">{message.messages.ko}</p>
-                {message.type === 'chat' && selectedLanguage !== 'ko' && (
-                  <p className="break-words text-gray-600 border-t pt-2">{message.messages[selectedLanguage]}</p>
+                <p className="break-words text-gray-900">{message.messages[sourceLang]}</p>
+                {message.type === 'chat' && targetLang !== sourceLang && (
+                  <p className="break-words text-gray-600 border-t pt-2">{message.messages[targetLang]}</p>
                 )}
               </div>
               <div className="text-xs text-gray-400 mt-2">{message.timestamp.toLocaleTimeString()}</div>
@@ -196,7 +249,6 @@ const Chatting = () => {
                 disabled={isLoading}
                 title="한/영 전환"
               >
-                {/* <Image src={Aa} alt="togglelanguage" width={20} height={20} /> */}
                 <span className="ml-1 text-sm">{isKorean ? '한' : 'A'}</span>
               </button>
             </div>

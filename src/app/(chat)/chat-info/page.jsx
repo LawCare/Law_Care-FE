@@ -6,7 +6,7 @@ const ChatInfoPage = () => {
   return (
     <div>
       <ChatInfo />
-      <SeverancePay />
+      {/* <SeverancePay /> */}
     </div>
   );
 };
