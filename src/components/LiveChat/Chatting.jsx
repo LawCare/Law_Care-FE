@@ -128,13 +128,13 @@ const Chatting = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      {/* Language Switcher */}
+      {/* 언어 선택 */}
       <div className="max-w-xl mx-auto p-4">
-        <div className="flex items-center space-x-2">
+        <div className=" items-center space-x-2">
           <select
             value={sourceLang}
             onChange={(e) => setSourceLang(e.target.value)}
-            className="flex-1 p-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 p-2 rounded-s border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {Object.entries(languages).map(([code, name]) => (
               <option key={code} value={code}>
@@ -143,23 +143,15 @@ const Chatting = () => {
             ))}
           </select>
 
-          <button
-            onClick={handleSwap}
-            className="p-2 rounded-full hover:bg-gray-100"
-            aria-label="Swap languages"
-          >
-            <svg 
-              className="w-5 h-5 text-gray-600" 
-              fill="none" 
-              strokeWidth="2" 
-              stroke="currentColor" 
+          <button onClick={handleSwap} className="p-2 rounded-full hover:bg-gray-100" aria-label="Swap languages">
+            <svg
+              className="w-5 h-5 text-gray-600"
+              fill="none"
+              strokeWidth="2"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path 
-                d="M8 7h12M8 7l4-4M8 7l4 4m4 4H4m16 0l-4-4m4 4l-4 4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
+              <path d="M8 7h12M8 7l4-4M8 7l4 4m4 4H4m16 0l-4-4m4 4l-4 4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
@@ -188,28 +180,33 @@ const Chatting = () => {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 space-y-4">
-        {messages.map((message) => (
-          <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div
-              className={`max-w-md p-3 rounded-lg ${
-                message.sender === 'user'
-                  ? message.type === 'chat'
-                    ? 'bg-blue-100'
-                    : 'bg-green-100'
-                  : 'bg-white border'
-              }`}
-            >
-              <div className="space-y-2">
-                <p className="break-words text-gray-900">{message.messages[sourceLang]}</p>
-                {message.type === 'chat' && targetLang !== sourceLang && (
-                  <p className="break-words text-gray-600 border-t pt-2">{message.messages[targetLang]}</p>
-                )}
+      <div className="flex flex-col h-[calc(104vh-400px)]">
+        {/* 채팅 표시 영역 - 스크롤 가능 */}
+        <div className="flex-1 overflow-y-auto px-4 space-y-4 min-h-[400px] max-h-[600px]">
+          {messages.map((message) => (
+            <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                className={`max-w-md p-3 rounded-lg ${
+                  message.sender === 'user'
+                    ? message.type === 'chat'
+                      ? 'bg-blue-100'
+                      : 'bg-green-100'
+                    : 'bg-white border'
+                }`}
+              >
+                <div className="space-y-2">
+                  <p className="break-words text-gray-900">{message.messages[sourceLang]}</p>
+                  {message.type === 'chat' && targetLang !== sourceLang && (
+                    <p className="break-words text-gray-600 border-t pt-2">{message.messages[targetLang]}</p>
+                  )}
+                </div>
               </div>
-              <div className="text-xs text-gray-400 mt-2">{message.timestamp.toLocaleTimeString()}</div>
+              {/* <div className="text-xs text-gray-400 mt-2 self-end">{message.timestamp.toLocaleTimeString()}</div> */}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className="flex-none"></div>
       </div>
 
       <div className="flex-none border-t bg-white">
