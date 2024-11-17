@@ -8,7 +8,7 @@ const ChatInfo = () => {
   const [showExplainWord, setShowExplainWord] = useState(false);
 
   return (
-    <div className="bg-gray-100 w-100 p-4 min-h-screen rounded-lg shadow-md">
+    <div className=" w-100 p-4 min-h-screen rounded-lg ">
       {showExplainWord ? (
         <ExplainWord onBack={() => setShowExplainWord(false)} />
       ) : (
@@ -19,12 +19,7 @@ const ChatInfo = () => {
             <p className="text-sm">주제: 임금체불 법안 상담</p>
           </div>
 
-          <hr className="border-t-2 border-custom-navy my-2" />
-
-          <div className="bg-white p-4 rounded-lg shadow mb-4">
-            <h3 className="bg-custom-blue text-white font-semibold text-sm mb-2 p-1 rounded inline-block">
-              상담사 정보
-            </h3>
+          <div className="bg-white p-4 rounded-lg ">
             <div className="space-y-4">
               <div className="flex flex-col items-center bg-white rounded-lg p-4">
                 <div className="flex-shrink-0 relative">

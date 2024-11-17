@@ -16,11 +16,15 @@ module.exports = {
         'custom-dark-blue': '#00203A',
         'custom-sky-blue': '#EFF7FF',
         'custom-navy': '#01203A',
-        'custom-navy2': '#01203b'
+        'custom-navy2': '#01203b',
+        'custom-sky-blue2': '#EEF7FF',
+        'custom-sky-blue3': '#EAF5FF',
+        'custom-gray': '#F3F3F3',
+        'custom-dark-gray': '#888888'
       }
     },
     screens: {
-      'laptop' : '1024px'
+      laptop: '1024px'
     }
   },
   plugins: []
