@@ -75,40 +75,39 @@ export const TRANSLATIONS = {
         vi: "Vâng, tôi sẽ kiểm tra nội dung bạn đã nói. Nếu cần thêm tài liệu hoặc thông tin, tôi sẽ liên hệ lại.",
         th: "ค่ะ/ครับ ฉันจะตรวจสอบเนื้อหาที่คุณพูด หากต้องการเอกสารหรือข้อมูลเพิ่มเติม ฉันจะติดต่อกลับ"
       }
-    }
-  };
-  
-  export const LANGUAGES = {
-    ZH: 'zh',
-    VI: 'vi',
-    TH: 'th'
-  };
-  
-  export const LANGUAGE_LABELS = {
-    zh: {
-      native: '中文',
-      ko: '중국어',
-    },
-    vi: {
-      native: 'Tiếng Việt',
-      ko: '베트남어',
-    },
-    th: {
-      native: 'ภาษาไทย',
-      ko: '태국어',
-    }
-  };
-  
-  export const HEADER_MESSAGE = {
-    ko: "상담을 시작하였습니다. 자동번역이 적용됩니다.",
-    zh: "咨询已开始。将应用自动翻译。",
-    vi: "Tư vấn đã bắt đầu. Áp dụng dịch tự động.",
-    th: "การให้คำปรึกษาเริ่มต้นแล้ว กำลังใช้การแปลอัตโนมัติ"
-  };
-  
-  export const INITIAL_GREETING = {
-    ko: "안녕하세요. 법률 상담을 시작하겠습니다. 어떤 도움이 필요하신가요?",
-    zh: "您好。我们开始法律咨询。需要什么帮助？",
-    vi: "Xin chào. Chúng tôi bắt đầu tư vấn pháp lý. Bạn cần giúp đỡ gì?",
-    th: "สวัสดี เราจะเริ่มให้คำปรึกษาด้านกฎหมาย คุณต้องการความช่วยเหลืออะไร?"
-  };
+
+
+export const LANGUAGES = {
+  ZH: 'zh',
+  VI: 'vi',
+  TH: 'th'
+};
+
+export const LANGUAGE_LABELS = {
+  zh: {
+    native: '中文',
+    ko: '중국어'
+  },
+  vi: {
+    native: 'Tiếng Việt',
+    ko: '베트남어'
+  },
+  th: {
+    native: 'ภาษาไทย',
+    ko: '태국어'
+  }
+};
+
+export const HEADER_MESSAGE = {
+  ko: '상담을 시작하였습니다. 자동번역이 적용됩니다.',
+  zh: '咨询已开始。将应用自动翻译。',
+  vi: 'Tư vấn đã bắt đầu. Áp dụng dịch tự động.',
+  th: 'การให้คำปรึกษาเริ่มต้นแล้ว กำลังใช้การแปลอัตโนมัติ'
+};
+
+export const INITIAL_GREETING = {
+  ko: '안녕하세요. 법률 상담을 시작하겠습니다. 어떤 도움이 필요하신가요?',
+  zh: '您好。我们开始法律咨询。需要什么帮助？',
+  vi: 'Xin chào. Chúng tôi bắt đầu tư vấn pháp lý. Bạn cần giúp đỡ gì?',
+  th: 'สวัสดี เราจะเริ่มให้คำปรึกษาด้านกฎหมาย คุณต้องการความช่วยเหลืออะไร?'
+};

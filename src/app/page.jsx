@@ -11,85 +11,46 @@ import Specification from '../components/ChatInfo/specification';
 import SeverancePay from '../components/ChatInfo/severancePay';
 
 const Chatpage = () => {
-  // 상태 관리
-  const [showSeverancePay, setShowSeverancePay] = useState(false);
-  const [showBasicSalary, setShowBasicSalary] = useState(false);
-  const [showEmploymentContract, setShowEmploymentContract] = useState(false);
-  const [showSpecification, setShowSpecification] = useState(false);
+  const [currentInfoComponent, setCurrentInfoComponent] = useState(null);
 
-  // 핸들러 함수
-  const handleSeverancePayClick = () => {
-    setShowSeverancePay(true);
-    resetOtherStates('SeverancePay');
-  };
-
-  const handleBasicSalaryClick = () => {
-    setShowBasicSalary(true);
-    resetOtherStates('BasicSalary');
-  };
-
-  const handleEmploymentContractClick = () => {
-    setShowEmploymentContract(true);
-    resetOtherStates('EmploymentContract');
-  };
-
-  const handleSpecificationClick = () => {
-    setShowSpecification(true);
-    resetOtherStates('Specification');
-  };
-
-  const resetOtherStates = (currentComponent) => {
-    if (currentComponent !== 'SeverancePay') setShowSeverancePay(false);
-    if (currentComponent !== 'BasicSalary') setShowBasicSalary(false);
-    if (currentComponent !== 'EmploymentContract') setShowEmploymentContract(false);
-    if (currentComponent !== 'Specification') setShowSpecification(false);
+  const handleKeywordClick = (componentName) => {
+    setCurrentInfoComponent(componentName);
   };
 
   const handleBackToChatInfo = () => {
-    setShowSeverancePay(false);
-    setShowBasicSalary(false);
-    setShowEmploymentContract(false);
-    setShowSpecification(false);
+    setCurrentInfoComponent(null);
   };
 
   return (
-    <div className="h-screen flex">
-      <aside className="w-20 h-full fixed left-0 top-0">
+    <div className="h-screen flex flex-col lg:flex-row ">
+      <aside className="lg:w-20 lg:h-full lg:fixed lg:left-0 lg:top-0 lg:block hidden">
         <SideBarPage />
       </aside>
 
-      <div className="flex flex-col flex-grow ml-20">
+      <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white flex justify-around py-2 border-t">
+        <SideBarPage />
+      </div>
+
+      <div className="flex flex-col flex-grow lg:ml-20">
         <header className="w-full">
           <SearchBarPage />
         </header>
 
         <div className="flex flex-grow">
-          <section className="w-[18%] border-r">
+          <section className="w-full md:w-[18%] border-r hidden md:block">
             <AllChatPage />
           </section>
 
           <section className="flex-grow">
-            {showSeverancePay && <SeverancePay onBack={handleBackToChatInfo} />}
-            {showBasicSalary && <BasicSalary onBack={handleBackToChatInfo} />}
-            {showEmploymentContract && <EmploymentContract onBack={handleBackToChatInfo} />}
-            {showSpecification && <Specification onBack={handleBackToChatInfo} />}
-            {!showSeverancePay && !showBasicSalary && !showEmploymentContract && !showSpecification && (
-              <ChattingPage
-                onSeverancePayClick={handleSeverancePayClick}
-                onBasicSalaryClick={handleBasicSalaryClick}
-                onEmploymentContractClick={handleEmploymentContractClick}
-                onSpecificationClick={handleSpecificationClick}
-              />
-            )}
+            <ChattingPage onKeywordClick={handleKeywordClick} />
           </section>
 
-          <aside className="w-[30%] border-l">
-            <ChatInfoPage
-              onSeverancePayClick={handleSeverancePayClick}
-              onBasicSalaryClick={handleBasicSalaryClick}
-              onEmploymentContractClick={handleEmploymentContractClick}
-              onSpecificationClick={handleSpecificationClick}
-            />
+          <aside className="hidden lg:block w-[30%] border-l">
+            {currentInfoComponent === 'SeverancePay' && <SeverancePay onBack={handleBackToChatInfo} />}
+            {currentInfoComponent === 'BasicSalary' && <BasicSalary onBack={handleBackToChatInfo} />}
+            {currentInfoComponent === 'EmploymentContract' && <EmploymentContract onBack={handleBackToChatInfo} />}
+            {currentInfoComponent === 'Specification' && <Specification onBack={handleBackToChatInfo} />}
+            {!currentInfoComponent && <ChatInfoPage onKeywordClick={handleKeywordClick} />}
           </aside>
         </div>
       </div>
