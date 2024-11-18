@@ -128,7 +128,7 @@ const Chatting = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      {/* 언어 선택 */}
+      {/* 언어 선택 영역*/}
       <div className="max-w-xl mx-auto p-4">
         <div className=" items-center space-x-2">
           <select
