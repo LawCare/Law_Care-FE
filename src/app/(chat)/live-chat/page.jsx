@@ -1,13 +1,12 @@
-'use client'
-import Chatting from '@/components/LiveChat/Chatting'
+'use client';
+import Chatting from '@/components/LiveChat/Chatting';
 
-const ChattingPage = () => {
+const ChattingPage = ({ onKeywordClick }) => {
   return (
     <div>
-      <Chatting/>
-
+      <Chatting onKeywordClick={onKeywordClick} />
     </div>
-  )
-}
+  );
+};
 
-export default ChattingPage
+export default ChattingPage;

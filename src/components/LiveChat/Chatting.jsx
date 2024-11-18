@@ -6,7 +6,7 @@ import addIcon from '@/assets/icons/addition.png';
 import send from '@/assets/icons/send.png';
 import Aa from '@/assets/icons/Aa.png';
 
-const Chatting = () => {
+const Chatting = ({ onKeywordClick }) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [noteText, setNoteText] = useState('');
@@ -22,6 +22,32 @@ const Chatting = () => {
     zh: '중국어',
     vi: '베트남어',
     th: '태국어'
+  };
+
+  const transformTextToLinks = (text) => {
+    const keywordToComponentMap = {
+      퇴직금: 'SeverancePay',
+      기본급: 'BasicSalary',
+      근로계약서: 'EmploymentContract',
+      명세서: 'Specification'
+    };
+
+    const regex = new RegExp(`(${Object.keys(keywordToComponentMap).join('|')})`, 'g');
+
+    return text.split(regex).map((part, index) => {
+      if (keywordToComponentMap[part]) {
+        return (
+          <span
+            key={index}
+            className="text-blue-500 underline cursor-pointer"
+            onClick={() => onKeywordClick(keywordToComponentMap[part])}
+          >
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
   };
 
   useEffect(() => {
@@ -195,7 +221,7 @@ const Chatting = () => {
                 }`}
               >
                 <div className="space-y-2">
-                  <p className="break-words text-gray-900">{message.messages[sourceLang]}</p>
+                  <p className="break-words text-gray-900">{transformTextToLinks(message.messages[sourceLang])}</p>
                   {message.type === 'chat' && targetLang !== sourceLang && (
                     <p className="break-words text-gray-600 border-t pt-2">{message.messages[targetLang]}</p>
                   )}
