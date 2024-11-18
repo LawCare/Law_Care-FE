@@ -1,30 +1,19 @@
-import localFont from "next/font/local";
-import "./globals.css";
+import './globals.css';
+import { Noto_Sans } from 'next/font/google';
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const notoSans = Noto_Sans({
+  subsets: ['latin', 'korean', 'vietnamese', 'chinese-simplified', 'thai'],
 });
 
 export const metadata = {
-  title: "LawCare",
-  description: "외국인 노동자들을 위한 법률 채팅/상담 서비스",
+  title: 'LawCare',
+  description: '외국인 노동자들을 위한 법률 채팅/상담 서비스'
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="ko" className={notoSans.className}>
+      <body>{children}</body>
     </html>
   );
 }
