@@ -8,7 +8,6 @@ import end from '../../assets/icons/end.png';
 const AllChat = () => {
   return (
     <div className="hidden lg:block min-h-screen w-full">
-      {/* 데스크탑에서만 표시되도록 lg:block 사용 */}
       <div className="flex justify-between items-center px-5 py-4 bg-custom-sky-blue2 ">
         <h2 className="text-lg font-extrabold text-blue-900 w-full">모든 채팅</h2>
       </div>

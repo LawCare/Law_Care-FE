@@ -8,14 +8,33 @@ import Attachfile from '../../assets/icons/Attachfile.png';
 import pdf from '../../assets/icons/pdf.png';
 import Add from '../../assets/icons/Add.png';
 import SeverancePay from './severancePay';
+import BasicSalary from './basicSalary';
+import EmploymentContract from './employmentxContract';
+import Specification from './specification';
 
 const ChatInfo = () => {
   const [showSeverancePay, setShowSeverancePay] = useState(false);
+  const [showBasicSalary, setShowBasicSalary] = useState(false);
+  const [showEmploymentContract, setShowEmploymentContract] = useState(false);
+  const [showSpecification, setShowSpecification] = useState(false);
+
+  const resetOtherStates = () => {
+    setShowSeverancePay(false);
+    setShowBasicSalary(false);
+    setShowEmploymentContract(false);
+    setShowSpecification(false);
+  };
 
   return (
-    <div className=" w-100 min-h-screen rounded-lg ">
+    <div className="w-100 min-h-screen rounded-lg">
       {showSeverancePay ? (
-        <SeverancePay onBack={() => setShowSeverancePay(false)} />
+        <SeverancePay onBack={() => resetOtherStates()} />
+      ) : showBasicSalary ? (
+        <BasicSalary onBack={() => resetOtherStates()} />
+      ) : showEmploymentContract ? (
+        <EmploymentContract onBack={() => resetOtherStates()} />
+      ) : showSpecification ? (
+        <Specification onBack={() => resetOtherStates()} />
       ) : (
         <>
           <div className="mb-4 flex flex-col px-5 py-4 bg-custom-sky-blue2">
@@ -24,9 +43,9 @@ const ChatInfo = () => {
             <p className="text-sm">주제: 임금체불 법안 상담</p>
           </div>
 
-          <div className="bg-white rounded-lg ">
+          <div className="bg-white rounded-lg">
             <div className="space-y-4">
-              <div className="flex flex-col items-center bg-white rounded-lg p-4 ">
+              <div className="flex flex-col items-center bg-white rounded-lg p-4">
                 <div className="flex-shrink-0 relative">
                   <Image src={manicon} alt="Consultant 1" width={70} height={70} className="rounded-full" />
                   <div className="absolute bottom-1 right-1">
@@ -49,24 +68,52 @@ const ChatInfo = () => {
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <Image src={Note} alt="Note" width={15} height={15} />
-                <h3 className=" font-semibold text-[14px]  p-1 ">용어노트</h3>
+                <h3 className="font-semibold text-[14px] p-1">용어노트</h3>
               </div>
               <button className="px-3 py-1 font-semibold bg-custom-sky-blue2 text-gray-500 rounded-full">편집</button>
             </div>
 
             <div
-              className=" border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
-              onClick={() => setShowSeverancePay(true)}
+              className="border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
+              onClick={() => {
+                resetOtherStates();
+                setShowSeverancePay(true);
+              }}
             >
               <span className="text-sm">퇴직금</span>
               <Image src={arrow} alt="arrow" width={15} height={15} />
             </div>
 
             <div
-              className=" border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
-              onClick={() => setShowSeverancePay(true)}
+              className="border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
+              onClick={() => {
+                resetOtherStates();
+                setShowBasicSalary(true);
+              }}
+            >
+              <span className="text-sm">기본급</span>
+              <Image src={arrow} alt="arrow" width={15} height={15} />
+            </div>
+
+            <div
+              className="border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
+              onClick={() => {
+                resetOtherStates();
+                setShowEmploymentContract(true);
+              }}
             >
               <span className="text-sm">근로계약서</span>
+              <Image src={arrow} alt="arrow" width={15} height={15} />
+            </div>
+
+            <div
+              className="border border-gray-150 rounded-lg flex items-center justify-between p-2 mb-2 cursor-pointer"
+              onClick={() => {
+                resetOtherStates();
+                setShowSpecification(true);
+              }}
+            >
+              <span className="text-sm">명세서</span>
               <Image src={arrow} alt="arrow" width={15} height={15} />
             </div>
           </div>
@@ -75,7 +122,7 @@ const ChatInfo = () => {
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <Image src={Attachfile} alt="Attach file" width={8} height={8} />
-                <h3 className=" font-semibold text-[14px]  p-1 ">첨부파일</h3>
+                <h3 className="font-semibold text-[14px] p-1">첨부파일</h3>
               </div>
             </div>
             <div className="border border-gray-150 rounded-lg flex items-center p-3 mb-2 text-sm cursor-pointer">

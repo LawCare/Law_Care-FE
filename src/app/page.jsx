@@ -5,56 +5,91 @@ import ChatInfoPage from './(chat)/chat-info/page';
 import ChattingPage from './(chat)/live-chat/page';
 import SearchBarPage from './(chat)/search-bar/page';
 import SideBarPage from './(chat)/side-bar/page';
+import BasicSalary from '../components/ChatInfo/basicSalary';
+import EmploymentContract from '../components/ChatInfo/employmentxContract';
+import Specification from '../components/ChatInfo/specification';
+import SeverancePay from '../components/ChatInfo/severancePay';
 
 const Chatpage = () => {
+  // 상태 관리
   const [showSeverancePay, setShowSeverancePay] = useState(false);
+  const [showBasicSalary, setShowBasicSalary] = useState(false);
+  const [showEmploymentContract, setShowEmploymentContract] = useState(false);
+  const [showSpecification, setShowSpecification] = useState(false);
 
+  // 핸들러 함수
   const handleSeverancePayClick = () => {
     setShowSeverancePay(true);
+    resetOtherStates('SeverancePay');
+  };
+
+  const handleBasicSalaryClick = () => {
+    setShowBasicSalary(true);
+    resetOtherStates('BasicSalary');
+  };
+
+  const handleEmploymentContractClick = () => {
+    setShowEmploymentContract(true);
+    resetOtherStates('EmploymentContract');
+  };
+
+  const handleSpecificationClick = () => {
+    setShowSpecification(true);
+    resetOtherStates('Specification');
+  };
+
+  const resetOtherStates = (currentComponent) => {
+    if (currentComponent !== 'SeverancePay') setShowSeverancePay(false);
+    if (currentComponent !== 'BasicSalary') setShowBasicSalary(false);
+    if (currentComponent !== 'EmploymentContract') setShowEmploymentContract(false);
+    if (currentComponent !== 'Specification') setShowSpecification(false);
   };
 
   const handleBackToChatInfo = () => {
     setShowSeverancePay(false);
+    setShowBasicSalary(false);
+    setShowEmploymentContract(false);
+    setShowSpecification(false);
   };
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row">
-      {/* 사이드바 (데스크탑 전용) */}
-      <aside
-        className="lg:w-20 lg:h-full lg:fixed lg:left-0 lg:top-0 lg:block hidden"
-        // 데스크탑에서만 사이드바가 왼쪽에 보이도록 `lg:block` 추가, 모바일에서는 숨김 처리 `hidden`
-      >
+    <div className="h-screen flex">
+      <aside className="w-20 h-full fixed left-0 top-0">
         <SideBarPage />
       </aside>
 
-      {/* 모바일 하단 네비게이션 */}
-      <div
-        className="lg:hidden fixed bottom-0 left-0 w-full bg-white flex justify-around py-2 border-t"
-        // 모바일에서 하단 네비게이션이 나타나도록 설정 (`lg:hidden`으로 데스크탑에서는 숨김 처리)
-      >
-        <SideBarPage />
-      </div>
-
-      {/* 메인 컨텐츠 */}
-      <div className="flex flex-col flex-grow lg:ml-20">
-        {/* `lg:ml-20` 추가: 데스크탑에서만 사이드바 공간만큼 마진 추가 */}
+      <div className="flex flex-col flex-grow ml-20">
         <header className="w-full">
           <SearchBarPage />
         </header>
 
         <div className="flex flex-grow">
-          <section className="w-full md:w-[18%] border-r hidden md:block">
-            {/* `lg:w-[18%]` 추가: 데스크탑에서만 넓이를 18%로 설정 */}
+          <section className="w-[18%] border-r">
             <AllChatPage />
           </section>
 
           <section className="flex-grow">
-            <ChattingPage onSeverancePayClick={handleSeverancePayClick} />
+            {showSeverancePay && <SeverancePay onBack={handleBackToChatInfo} />}
+            {showBasicSalary && <BasicSalary onBack={handleBackToChatInfo} />}
+            {showEmploymentContract && <EmploymentContract onBack={handleBackToChatInfo} />}
+            {showSpecification && <Specification onBack={handleBackToChatInfo} />}
+            {!showSeverancePay && !showBasicSalary && !showEmploymentContract && !showSpecification && (
+              <ChattingPage
+                onSeverancePayClick={handleSeverancePayClick}
+                onBasicSalaryClick={handleBasicSalaryClick}
+                onEmploymentContractClick={handleEmploymentContractClick}
+                onSpecificationClick={handleSpecificationClick}
+              />
+            )}
           </section>
 
-          <aside className="hidden lg:block w-[30%] border-l">
-            {/* `hidden lg:block` 추가: 데스크탑에서만 채팅 정보 패널 표시 */}
-            <ChatInfoPage showSeverancePay={showSeverancePay} onBack={handleBackToChatInfo} />
+          <aside className="w-[30%] border-l">
+            <ChatInfoPage
+              onSeverancePayClick={handleSeverancePayClick}
+              onBasicSalaryClick={handleBasicSalaryClick}
+              onEmploymentContractClick={handleEmploymentContractClick}
+              onSpecificationClick={handleSpecificationClick}
+            />
           </aside>
         </div>
       </div>
