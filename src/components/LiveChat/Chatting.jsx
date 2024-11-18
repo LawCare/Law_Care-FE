@@ -65,23 +65,14 @@ const Chatting = () => {
       return;
     }
 
-    let messageToSend;
-    if (textToSend.trim()) {
-      messageToSend = {
+   
+    const  messageToSend = {
         ko: textToSend,
-        zh: textToSend,
-        vi: textToSend,
-        th: textToSend
-      };
-    } else {
-      messageToSend = {
-        ko: TRANSLATIONS.worker[dummyIndex].ko,
         zh: TRANSLATIONS.worker[dummyIndex].zh,
         vi: TRANSLATIONS.worker[dummyIndex].vi,
         th: TRANSLATIONS.worker[dummyIndex].th
       };
       setDummyIndex((prevIndex) => (prevIndex + 1) % TRANSLATIONS.worker.length);
-    }
 
     const newMessage = {
       id: messages.length + 1,
@@ -129,6 +120,7 @@ const Chatting = () => {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* 언어 선택 영역*/}
+      {dummyIndex}
       <div className="max-w-xl mx-auto p-4 pb-0">
         <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
           <select
@@ -159,11 +151,7 @@ const Chatting = () => {
             </svg>
           </button>
 
-          <select
-            value={targetLang}
-            onChange={(e) => setTargetLang(e.target.value)}
-            className="flex-1 py-1 rounded-lg"
-          >
+          <select value={targetLang} onChange={(e) => setTargetLang(e.target.value)} className="flex-1 py-1 rounded-lg">
             {Object.entries(languages).map(([code, name]) => (
               <option key={code} value={code} className="text-center">
                 {name}
@@ -214,7 +202,6 @@ const Chatting = () => {
       </div>
 
       <div className="flex-none border-t bg-white">
-
         <div className="p-2">
           <div className="flex items-center space-x-3">
             <div className="flex space-x-1">
@@ -224,18 +211,18 @@ const Chatting = () => {
                 disabled={isLoading}
                 title="파일 첨부"
               >
-                <div className="w-5 h-5">
-                  <Image src={addIcon} alt="addIcon" width={20} height={20} />
+                <div className="w-7 h-7">
+                  <Image src={addIcon} alt="addIcon" width={50} height={50} />
                 </div>
               </button>
-              <button
+              {/* <button
                 onClick={handleEmojiClick}
                 className="p-1 text-gray-500 hover:bg-gray-100 rounded"
                 disabled={isLoading}
                 title="이모티콘"
               >
                 <Smile size={20} />
-              </button>
+              </button> */}
               {/* <button
                 onClick={handleToggleLanguage}
                 className="p-1 text-gray-500 hover:bg-gray-100 rounded"
