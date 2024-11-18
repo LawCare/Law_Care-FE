@@ -19,9 +19,9 @@ const Chatting = () => {
 
   const languages = {
     ko: '한국어',
-    zh: '중국어',
-    vi: '베트남어',
-    th: '태국어'
+    zh: '中文',
+    vi: 'Tiếng Việt',
+    th: 'ภาษาไทย'
   };
 
   useEffect(() => {
@@ -129,25 +129,29 @@ const Chatting = () => {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* 언어 선택 영역*/}
-      <div className="max-w-xl mx-auto p-4">
-        <div className=" items-center space-x-2">
+      <div className="max-w-xl mx-auto p-4 pb-0">
+        <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
           <select
             value={sourceLang}
             onChange={(e) => setSourceLang(e.target.value)}
-            className="flex-1 p-2 rounded-s border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 py-1 pl-1 rounded-lg"
           >
             {Object.entries(languages).map(([code, name]) => (
-              <option key={code} value={code}>
+              <option key={code} value={code} className="text-center">
                 {name}
               </option>
             ))}
           </select>
 
-          <button onClick={handleSwap} className="p-2 rounded-full hover:bg-gray-100" aria-label="Swap languages">
+          <button
+            onClick={handleSwap}
+            className="p-1 mt-1 rounded-full hover:bg-gray-100 border border-gray-200"
+            aria-label="Swap languages"
+          >
             <svg
-              className="w-5 h-5 text-gray-600"
+              className="w-4 h-4 text-gray-600 text-center "
               fill="none"
-              strokeWidth="2"
+              strokeWidth="1.5"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
@@ -158,35 +162,35 @@ const Chatting = () => {
           <select
             value={targetLang}
             onChange={(e) => setTargetLang(e.target.value)}
-            className="flex-1 p-2 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 py-1 rounded-lg"
           >
             {Object.entries(languages).map(([code, name]) => (
-              <option key={code} value={code}>
+              <option key={code} value={code} className="text-center">
                 {name}
               </option>
             ))}
           </select>
         </div>
 
-        <div className="mt-2 text-center text-sm text-gray-600">
+        {/* <div className="mt-2 text-center text-md text-slate-900">
           {languages[sourceLang]} - {languages[targetLang]}
-        </div>
+        </div> */}
       </div>
-
-      <div className="flex-none p-4">
+      <div className="flex-none p-4 pt-1 mt-3">
         <div className="text-center space-y-1">
           <p className="text-gray-500 text-sm">{HEADER_MESSAGE.ko}</p>
+          <p className="text-gray-500 text-sm">{HEADER_MESSAGE.targetLang}</p>
           <p className="text-gray-400 text-sm">{HEADER_MESSAGE[targetLang]}</p>
         </div>
       </div>
 
-      <div className="flex flex-col h-[calc(104vh-400px)]">
-        {/* 채팅 표시 영역 - 스크롤 가능 */}
+      <div className="flex flex-col h-[580px]">
+        {/* 채팅 영역 - 스크롤 가능 */}
         <div className="flex-1 overflow-y-auto px-4 space-y-4 min-h-[400px] max-h-[600px]">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div
-                className={`max-w-md p-3 rounded-lg ${
+                className={`max-w-md p-3  rounded-2xl ${
                   message.sender === 'user'
                     ? message.type === 'chat'
                       ? 'bg-blue-100'
@@ -210,47 +214,38 @@ const Chatting = () => {
       </div>
 
       <div className="flex-none border-t bg-white">
-        <div className="flex border-b">
-          <button
-            className={`px-4 py-2 text-sm ${
-              activeInputTab === 'chat' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'
-            }`}
-            onClick={() => setActiveInputTab('chat')}
-          >
-            채팅
-          </button>
-        </div>
 
-        <div className="p-4">
-          <div className="flex items-center space-x-2">
-            <div className="flex space-x-2">
+        <div className="p-2">
+          <div className="flex items-center space-x-3">
+            <div className="flex space-x-1">
               <button
                 onClick={handleFileUpload}
-                className="p-2 text-gray-500 hover:bg-gray-100 rounded"
+                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
                 disabled={isLoading}
                 title="파일 첨부"
               >
-                <Image src={addIcon} alt="addfile" width={20} height={20} />
+                <div className="w-5 h-5">
+                  <Image src={addIcon} alt="addIcon" width={20} height={20} />
+                </div>
               </button>
               <button
                 onClick={handleEmojiClick}
-                className="p-2 text-gray-500 hover:bg-gray-100 rounded"
+                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
                 disabled={isLoading}
                 title="이모티콘"
               >
                 <Smile size={20} />
               </button>
-              <button
+              {/* <button
                 onClick={handleToggleLanguage}
-                className="p-2 text-gray-500 hover:bg-gray-100 rounded"
+                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
                 disabled={isLoading}
                 title="한/영 전환"
               >
-                <span className="ml-1 text-sm">{isKorean ? '한' : 'A'}</span>
-              </button>
+                <span className="text-md block">{isKorean ? '한' : 'A'}</span>
+              </button> */}
             </div>
-            <input
-              type="text"
+            <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
@@ -264,7 +259,11 @@ const Chatting = () => {
               disabled={isLoading || (!inputText.trim() && !noteText.trim())}
               title="전송"
             >
-              <Image src={send} alt="send" width={30} height={30} />
+              <div className="w-7 h-7">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+              </div>
             </button>
           </div>
         </div>
