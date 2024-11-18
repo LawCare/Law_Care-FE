@@ -43,7 +43,7 @@ const Chatpage = () => {
         </header>
 
         <div className="flex flex-grow">
-          <section className="w-full lg:w-[18%] border-r">
+          <section className="w-full md:w-[18%] border-r hidden md:block">
             {/* `lg:w-[18%]` 추가: 데스크탑에서만 넓이를 18%로 설정 */}
             <AllChatPage />
           </section>
