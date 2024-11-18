@@ -10,7 +10,6 @@ import chatm from '../../assets/icons/chatm.png';
 const SideBar = () => {
   return (
     <>
-      {/* 모바일에서는 하단, 데스크탑에서는 왼쪽에 고정 */}
       <div className="hidden lg:flex flex-col items-center bg-white h-screen w-20 space-y-4 py-4">
         <button className="mt-28">
           <Image src={home} alt="Home" width={100} height={100} />
@@ -29,7 +28,6 @@ const SideBar = () => {
         </button>
       </div>
 
-      {/* 모바일에서 하단 네비게이션 */}
       <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white flex justify-around py-2 border-t">
         <button>
           <Image src={home} alt="Home" width={70} height={70} />
