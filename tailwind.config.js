@@ -23,17 +23,20 @@ module.exports = {
         'custom-dark-gray': '#888888'
       },
       spacing: {
-        'sidebar-mobile': '4rem', // 모바일에서 사이드바 높이
-        'sidebar-desktop': '5rem' // 데스크탑에서 사이드바 너비
+        'sidebar-mobile': '4rem',
+        'sidebar-desktop': '5rem'
+      },
+      fontFamily: {
+        sans: ['Noto Sans', 'ui-sans-serif', 'system-ui']
       }
     },
     screens: {
-      sm: '640px', // Small devices (e.g., mobile)
-      md: '768px', // Medium devices (e.g., tablets)
-      lg: '1024px', // Large devices (e.g., laptops)
-      xl: '1280px', // Extra large devices (e.g., desktops)
-      '2xl': '1536px', // Double extra large devices
-      mobile: { max: '767px' } // Custom breakpoint for mobile devices
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      mobile: { max: '767px' }
     }
   }
 };

@@ -4,6 +4,7 @@ import logo from '../../assets/icons/logo.png';
 import search from '../../assets/icons/search.png';
 import globals from '../../assets/icons/globals.png';
 import hamburger from '../../assets/icons/hamburger.png';
+import login from '../../assets/icons/login.png';
 
 const Search = () => {
   return (
@@ -22,9 +23,12 @@ const Search = () => {
           </div>
         </div>
 
-        <div className="flex-shrink-0 flex items-center translate-x-[550px]">
+        <div className="flex-shrink-0 flex items-center space-x-4 mr-3">
           <button>
-            <Image src={globals} alt="globals" width={25} height={25} />
+            <Image src={globals} alt="globals" width={30} height={30} />
+          </button>
+          <button>
+            <Image src={login} alt="User Icon" width={30} height={30} />
           </button>
         </div>
       </div>
