@@ -15,6 +15,7 @@ const Chatting = ({ onKeywordClick }) => {
   const [dummyIndex, setDummyIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeInputTab, setActiveInputTab] = useState('chat');
+  const [isMobile, setIsMobile] = useState(false);
 
   const languages = {
     ko: '한국어',
@@ -71,6 +72,17 @@ const Chatting = ({ onKeywordClick }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <  768);
+    };
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  });
+
   const handleSwap = () => {
     setSourceLang(targetLang);
     setTargetLang(sourceLang);
@@ -90,14 +102,13 @@ const Chatting = ({ onKeywordClick }) => {
       return;
     }
 
-   
-    const  messageToSend = {
-        ko: textToSend,
-        zh: TRANSLATIONS.worker[dummyIndex].zh,
-        vi: TRANSLATIONS.worker[dummyIndex].vi,
-        th: TRANSLATIONS.worker[dummyIndex].th
-      };
-      setDummyIndex((prevIndex) => (prevIndex + 1) % TRANSLATIONS.worker.length);
+    const messageToSend = {
+      ko: textToSend,
+      zh: TRANSLATIONS.worker[dummyIndex].zh,
+      vi: TRANSLATIONS.worker[dummyIndex].vi,
+      th: TRANSLATIONS.worker[dummyIndex].th
+    };
+    setDummyIndex((prevIndex) => (prevIndex + 1) % TRANSLATIONS.worker.length);
 
     const newMessage = {
       id: messages.length + 1,
@@ -139,11 +150,7 @@ const Chatting = ({ onKeywordClick }) => {
       {/* 언어 선택 영역*/}
       <div className="max-w-xl mx-auto p-4 pb-0">
         <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
-          <select
-            value={sourceLang}
-            onChange={(e) => setSourceLang(e.target.value)}
-            className="flex-1 py-1 pl-1 rounded-lg"
-          >
+          <select value={sourceLang} onChange={(e) => setSourceLang(e.target.value)} className="flex-1 py-1 rounded-lg">
             {Object.entries(languages).map(([code, name]) => (
               <option key={code} value={code} className="text-center">
                 {name}
@@ -167,7 +174,7 @@ const Chatting = ({ onKeywordClick }) => {
             </svg>
           </button>
 
-          <select value={targetLang} onChange={(e) => setTargetLang(e.target.value)} className="flex-1 py-1 rounded-lg">
+          <select value={targetLang} onChange={(e) => setTargetLang(e.target.value)} className="flex-auto rounded-lg">
             {Object.entries(languages).map(([code, name]) => (
               <option key={code} value={code} className="text-center">
                 {name}
@@ -188,9 +195,9 @@ const Chatting = ({ onKeywordClick }) => {
         </div>
       </div>
 
-      <div className="flex flex-col h-[580px]">
+      <div className="flex flex-col h-[550px]">
         {/* 채팅 영역 - 스크롤 가능 */}
-        <div className="flex-1 overflow-y-auto px-4 space-y-4 min-h-[400px] max-h-[600px]">
+        <div className="flex-1 overflow-y-scroll px-4 space-y-4 min-h-[400px] max-h-[600px]">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div
@@ -209,6 +216,7 @@ const Chatting = ({ onKeywordClick }) => {
                   )}
                 </div>
               </div>
+              {/* 시간 표출 코드 */}
               {/* <div className="text-xs text-gray-400 mt-2 self-end">{message.timestamp.toLocaleTimeString()}</div> */}
             </div>
           ))}
@@ -217,58 +225,53 @@ const Chatting = ({ onKeywordClick }) => {
         <div className="flex-none"></div>
       </div>
 
-      <div className="flex-none border-t bg-white">
-        <div className="p-2">
-          <div className="flex items-center space-x-3">
-            <div className="flex space-x-1">
-              <button
-                onClick={handleFileUpload}
-                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
-                disabled={isLoading}
-                title="파일 첨부"
-              >
-                <div className="w-7 h-7">
-                  <Image src={addIcon} alt="addIcon" width={50} height={50} />
-                </div>
-              </button>
-              {/* <button
-                onClick={handleEmojiClick}
-                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
-                disabled={isLoading}
-                title="이모티콘"
-              >
-                <Smile size={20} />
-              </button> */}
-              {/* <button
-                onClick={handleToggleLanguage}
-                className="p-1 text-gray-500 hover:bg-gray-100 rounded"
-                disabled={isLoading}
-                title="한/영 전환"
-              >
-                <span className="text-md block">{isKorean ? '한' : 'A'}</span>
-              </button> */}
-            </div>
+      <div className="px-2 items-center space-x-3">
+        <div className="relative flex items-center space-x-3">
+          <div className="absolute left-4 bottom-2 flex items-center space-x-2 z-10">
+            <button
+              onClick={handleFileUpload}
+              className="p-1 ml-[-3px] mb-[-8px] text-gray-500 hover:bg-gray-100 rounded"
+              disabled={isLoading}
+              title="파일 첨부"
+            >
+              <div className="w-7 h-7">
+                <Image src={addIcon} alt="addIcon" width={50} height={50} />
+              </div>
+            </button>
+          </div>
+
+          {isMobile ? (
+            <input
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
+              placeholder="메시지를 입력하세요..."
+              className="w-full pl-28 p-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-10"
+              disabled={isLoading}
+            />
+          ) : (
             <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
               placeholder="메시지를 입력하세요..."
-              className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-4 p-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 md:resize-y resize-none"
               disabled={isLoading}
             />
-            <button
-              onClick={handleSendMessage}
-              className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg disabled:text-gray-300"
-              disabled={isLoading || (!inputText.trim() && !noteText.trim())}
-              title="전송"
-            >
-              <div className="w-7 h-7">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                </svg>
-              </div>
-            </button>
-          </div>
+          )}
+          <button
+            onClick={handleSendMessage}
+            className="p-0 mt-14 text-blue-500 hover:bg-blue-50 rounded-lg disabled:text-gray-300"
+            disabled={isLoading || (!inputText.trim() && !noteText.trim())}
+            title="전송"
+          >
+            <div className="w-7 h-7">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
     </div>
