@@ -2,7 +2,7 @@ import './globals.css';
 import { Noto_Sans } from 'next/font/google';
 
 const notoSans = Noto_Sans({
-  subsets: ['latin', 'korean', 'vietnamese', 'chinese-simplified', 'thai'],
+  subsets: ['latin', 'korean', 'vietnamese', 'chinese-simplified', 'thai']
 });
 
 export const metadata = {
