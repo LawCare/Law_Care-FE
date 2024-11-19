@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import SearchBarPage from '@/app/(chat)/search-bar/page';
 import SideBarPage from '@/app/(chat)/side-bar/page';
