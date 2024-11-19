@@ -15,7 +15,6 @@ const Chatting = ({ onKeywordClick }) => {
   const [dummyIndex, setDummyIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeInputTab, setActiveInputTab] = useState('chat');
-  const [isKorean, setIsKorean] = useState(true);
 
   const languages = {
     ko: '한국어',
@@ -131,22 +130,13 @@ const Chatting = ({ onKeywordClick }) => {
     }
   };
 
-  const handleToggleLanguage = () => {
-    setIsKorean(!isKorean);
-  };
-
   const handleFileUpload = () => {
     console.log('File upload clicked');
-  };
-
-  const handleEmojiClick = () => {
-    console.log('Emoji clicked');
   };
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* 언어 선택 영역*/}
-      {dummyIndex}
       <div className="max-w-xl mx-auto p-4 pb-0">
         <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
           <select
