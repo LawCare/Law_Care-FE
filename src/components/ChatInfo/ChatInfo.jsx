@@ -40,7 +40,7 @@ const ChatInfo = () => {
           <div className="mb-4 flex flex-col px-5 py-4 bg-custom-sky-blue2">
             <h2 className="text-lg font-semibold text-custom-navy2">채팅방 정보</h2>
             <p className="text-sm mt-2">방 번호: 1234</p>
-            <p className="text-sm">주제: 임금체불 법안 상담</p>
+            <p className="text-sm">주제: 임금체불 상담</p>
           </div>
 
           <div className="bg-white rounded-lg">
@@ -54,7 +54,7 @@ const ChatInfo = () => {
                 </div>
                 <div className="mt-4 border border-gray-300 rounded-lg p-8 text-center w-full mx-auto">
                   <p className="text-sm font-semibold mt-2">김 은 채</p>
-                  <p className="text-xs text-gray-500">노동법 전문상담가</p>
+                  <p className="text-xs text-gray-500">이웃살이 쉼터 담당자</p>
                   <div className="mt-2 text-xs text-gray-500 text-center">
                     <p>이메일: example@example.com</p>
                     <p>전화: 010-1234-5678</p>
