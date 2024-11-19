@@ -9,6 +9,8 @@ import end from '../assets/icons/end.png';
 import vidio1 from '../assets/icons/01.png';
 import vidio2 from '../assets/icons/02.png';
 import vidio3 from '../assets/icons/03.png';
+import img from '../assets/icons/img.png';
+
 const Chatpage = () => {
   return (
     <div className="h-screen flex flex-col lg:flex-row">
@@ -39,8 +41,9 @@ const Chatpage = () => {
             <div className="grid grid-cols-7">
               {/* 전문가 카드 1 */}
               <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert1.png" alt="Expert 1" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
+                <Image src={img} alt="Expert 1" layout="fill" objectFit="cover" className="rounded-md" />
+                {/* 버튼 영역 */}
+                <div className="absolute bottom-0 w-full flex justify-center items-center space-x-2 py-2">
                   <button className="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">채팅하기</button>
                   <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
                 </div>
@@ -105,7 +108,7 @@ const Chatpage = () => {
             {/* 내가 진행 중인 채팅 */}
             <section className="bg-white p-4 rounded-lg  flex-1">
               <h2 className="text-xl font-bold mb-4 flex justify-between items-center">
-                내가 진행 중인 채팅
+                진행 중인 채팅 목록
                 <button className="text-sm border px-4 py-1 rounded-md">더보기</button>
               </h2>
               <div className="space-y-4">
@@ -152,30 +155,40 @@ const Chatpage = () => {
             {/* 내가 진행 중인 예약 */}
             <section className="bg-white p-4 rounded-lg flex-1">
               <h2 className="text-xl font-bold mb-4 flex justify-between items-center">
-                내가 진행 중인 예약
+                진행 중인 예약 목록
                 <button className="text-sm border px-4 py-1 rounded-md">더보기</button>
               </h2>
               <div className="space-y-4">
-                {/* 첫 번째 예약 */}
-                <div className="relative bg-gray-200 h-20 rounded-md">
-                  <Image
-                    src="/reservation-image1.png"
-                    alt="Reservation 1"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
-                  />
+                {/* 첫 번째 채팅 */}
+                <div className="flex items-center justify-between border-b pb-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative w-12 h-12">
+                      <Image src={manicon} alt="Consultant 1" width={70} height={70} className="rounded-full" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">김은채</p>
+                      <p className="text-sm text-gray-500">2024.11.21 오후 6시</p>
+                    </div>
+                  </div>
+                  <span className="text-[12px] font-semibold px-2 py-1 bg-custom-sky-blue3 text-custom-light-blue rounded-full">
+                    오늘
+                  </span>
                 </div>
 
-                {/* 두 번째 예약 */}
-                <div className="relative bg-gray-200 h-20 rounded-md">
-                  <Image
-                    src="/reservation-image2.png"
-                    alt="Reservation 2"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
-                  />
+                {/* 두 번째 채팅 */}
+                <div className="flex items-center justify-between border-b pb-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative w-12 h-12">
+                      <Image src={womanicon} alt="Consultant 2" width={70} height={70} className="rounded-full" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">창다은</p>
+                      <p className="text-sm text-gray-500">2024.11.24 오후 2시</p>
+                    </div>
+                  </div>
+                  <span className="text-[12px] font-semibold px-2 py-1 bg-custom-gray text-custom-dark-gray rounded-full">
+                    3일 후
+                  </span>
                 </div>
               </div>
             </section>
