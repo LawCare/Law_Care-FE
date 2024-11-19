@@ -216,6 +216,7 @@ const Chatting = ({ onKeywordClick }) => {
                   )}
                 </div>
               </div>
+              {/* 시간 표출 코드 */}
               {/* <div className="text-xs text-gray-400 mt-2 self-end">{message.timestamp.toLocaleTimeString()}</div> */}
             </div>
           ))}
