@@ -72,7 +72,7 @@ const Chatting = ({ onKeywordClick }) => {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <  768);
+      setIsMobile(window.innerWidth < 768);
     };
     checkScreenSize();
 
@@ -196,84 +196,82 @@ const Chatting = ({ onKeywordClick }) => {
       <div className="flex flex-col lg:h-[600px] h-[300px]">
         {/* 채팅 영역 */}
         <div className="flex-1 overflow-y-scroll px-2 space-y-3 min-h-[480px] max-h-[520px]">
-  {messages.map((message) => (
-    <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-      <div
-        className={`max-w-[280px] p-2 rounded-2xl border-t-2 border ${
-          message.sender === 'user'
-            ? message.type === 'chat'
-              ? 'bg-blue-50'
-              : 'bg-green-100'
-            : 'bg-white border'
-        }`}
-      >
-        <div className="space-y-1.5">
-          <p className="break-words text-gray-900 text-sm">
-            {transformTextToLinks(message.messages[sourceLang])}
-          </p>
-          {message.type === 'chat' && targetLang !== sourceLang && (
-            <p className="break-words text-gray-600 border-t pt-1.5 text-xs">
-              {message.messages[targetLang]}
-            </p>
-          )}
+          {messages.map((message) => (
+            <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                className={`max-w-[280px] p-2 rounded-2xl border-t-2 border ${
+                  message.sender === 'user'
+                    ? message.type === 'chat'
+                      ? 'bg-blue-50'
+                      : 'bg-green-100'
+                    : 'bg-white border'
+                }`}
+              >
+                <div className="space-y-1.5">
+                  <p className="break-words text-gray-900 text-sm">
+                    {transformTextToLinks(message.messages[sourceLang])}
+                  </p>
+                  {message.type === 'chat' && targetLang !== sourceLang && (
+                    <p className="break-words text-gray-600 border-t pt-1.5 text-xs">{message.messages[targetLang]}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>
-  ))}
-</div>
 
         <div className="flex-none"></div>
       </div>
 
       <div className="px-1.5 items-center space-x-2">
-  <div className="relative flex items-center lg:space-x-2 space-x-4 mt-4">
-    <div className="absolute lg:ml-1.5 left-3 bottom-1.5 flex items-center space-x-1.5 z-10">
-      <button
-        onClick={handleFileUpload}
-        className="lg:p-0.5 lg:ml-[-3px] lg:mb-[-6px] ml-[2px] text-gray-500 hover:bg-gray-100 rounded"
-        disabled={isLoading}
-        title="파일 첨부"
-      >
-        <div className="lg:w-6 lg:h-6 w-5 h-5 ml-2 lg:ml-1 ">
-          <Image src={addIcon} alt="addIcon" width={50} height={50} />
-        </div>
-      </button>
-    </div>
+        <div className="relative flex items-center lg:space-x-2 space-x-4 mt-4">
+          <div className="absolute lg:ml-1.5 left-3 bottom-1.5 flex items-center space-x-1.5 z-10">
+            <button
+              onClick={handleFileUpload}
+              className="lg:p-4 lg:ml-[-20px] lg:mb-[-6px] ml-[2px] text-gray-500 hover:bg-gray-100 rounded"
+              disabled={isLoading}
+              title="파일 첨부"
+            >
+              <div className="lg:w-8 lg:h-6 w-5 h-5 ml-2 lg:ml-1 ">
+                <Image src={addIcon} alt="addIcon" width={50} height={50} />
+              </div>
+            </button>
+          </div>
 
-    {isMobile ? (
-      <input
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
-        placeholder="메시지를 입력하세요..."
-        className="w-full pl-20 p-1.5 border rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 h-8"
-        disabled={isLoading}
-      />
-    ) : (
-      <textarea
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
-        placeholder="메시지를 입력하세요..."
-        className="w-[90%] pl-4 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
-        disabled={isLoading}
-      />
-    )}
-    <button
-      onClick={handleSendMessage}
-      className=" lg:mt-10 p-0 mt-1 text-blue-500 hover:bg-blue-50 rounded-lg disabled:text-gray-300"
-      disabled={isLoading || (!inputText.trim() && !noteText.trim())}
-      title="전송"
-    >
-      <div className="w-6 h-6">
-        <svg viewBox="0 0 24 24" fill="currentColor" className="lg:w-full lg:h-full ">
-          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-        </svg>
+          {isMobile ? (
+            <input
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
+              placeholder="메시지를 입력하세요..."
+              className="w-full pl-20 p-1.5 border rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 h-8"
+              disabled={isLoading}
+            />
+          ) : (
+            <textarea
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
+              placeholder="메시지를 입력하세요..."
+              className="w-[90%] pl-4 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-24 resize-none"
+              disabled={isLoading}
+            />
+          )}
+          <button
+            onClick={handleSendMessage}
+            className=" lg:mt-10 p-0 mt-1 text-blue-500 hover:bg-blue-50 rounded-lg disabled:text-gray-300"
+            disabled={isLoading || (!inputText.trim() && !noteText.trim())}
+            title="전송"
+          >
+            <div className="w-6 h-6">
+              <svg viewBox=" 26 26" fill="currentColor" className="lg:w-full lg:h-full ">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            </div>
+          </button>
+        </div>
       </div>
-    </button>
-  </div>
-</div>
     </div>
   );
 };
