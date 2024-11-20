@@ -9,9 +9,9 @@ import end from '../assets/icons/end.png';
 import vidio1 from '../assets/icons/01.png';
 import vidio2 from '../assets/icons/02.png';
 import vidio3 from '../assets/icons/03.png';
-import shop01 from '../assets/icons/001.jpg';
-import shop02 from '../assets/icons/002.jpg';
-import shop03 from '../assets/icons/003.jpg';
+import shop01 from '../assets/icons/001.jpeg';
+import shop02 from '../assets/icons/002.jpeg';
+import shop03 from '../assets/icons/003.jpeg';
 
 const Chatpage = () => {
   return (
