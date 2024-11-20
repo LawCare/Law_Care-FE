@@ -146,7 +146,7 @@ const Chatting = ({ onKeywordClick }) => {
   return (
     <div className="h-[93vh] flex flex-col bg-gray-50">
       {/* 언어 선택 영역*/}
-      <div className="max-w-xl mx-auto p-4 pb-0">
+      <div className="max-w-xl mx-auto pb-6 pt-6">
         <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
           <select value={sourceLang} onChange={(e) => setSourceLang(e.target.value)} className="flex-1 py-1 rounded-lg">
             {Object.entries(languages).map(([code, name]) => (
@@ -185,7 +185,7 @@ const Chatting = ({ onKeywordClick }) => {
           {languages[sourceLang]} - {languages[targetLang]}
         </div> */}
       </div>
-      <div className="flex-none p-4 pt-1 mt-3">
+      <div className="flex-none px-4 pt-2 pb-4">
         <div className="text-center space-y-1">
           <p className="text-gray-500 text-sm">{HEADER_MESSAGE.ko}</p>
           <p className="text-gray-500 text-sm">{HEADER_MESSAGE.targetLang}</p>
@@ -193,16 +193,16 @@ const Chatting = ({ onKeywordClick }) => {
         </div>
       </div>
 
-      <div className="flex flex-col h-[1000px]">
+      <div className="flex flex-col h-[600px]">
         {/* 채팅 영역 - 스크롤 가능 */}
         <div className="flex-1 overflow-y-scroll px-4 space-y-4 min-h-[400px] max-h-[600px]">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div
-                className={`max-w-md p-3  rounded-2xl ${
+                className={`max-w-md p-3 rounded-2xl border-t-2 border ${
                   message.sender === 'user'
                     ? message.type === 'chat'
-                      ? 'bg-blue-100'
+                      ? 'bg-blue-50'
                       : 'bg-green-100'
                     : 'bg-white border'
                 }`}
