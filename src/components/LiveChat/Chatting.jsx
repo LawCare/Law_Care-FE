@@ -227,15 +227,15 @@ const Chatting = ({ onKeywordClick }) => {
 
       <div className="px-1.5 items-center space-x-2">
   <div className="relative flex items-center lg:space-x-2 space-x-4 mt-4">
-    <div className="absolute left-3 bottom-1.5 flex items-center space-x-1.5 z-10">
+    <div className="absolute lg:ml-1.5 left-3 bottom-1.5 flex items-center space-x-1.5 z-10">
       <button
         onClick={handleFileUpload}
-        className="lg:p-0.5 lg:ml-[-2px] lg:mb-[-6px] ml-[-2px] text-gray-500 hover:bg-gray-100 rounded"
+        className="lg:p-0.5 lg:ml-[-3px] lg:mb-[-6px] ml-[2px] text-gray-500 hover:bg-gray-100 rounded"
         disabled={isLoading}
         title="파일 첨부"
       >
-        <div className="lg:w-6 lg:h-6 w-5 h-5 ">
-          <Image src={addIcon} alt="addIcon" width={40} height={40} />
+        <div className="lg:w-6 lg:h-6 w-5 h-5 ml-2 lg:ml-1 ">
+          <Image src={addIcon} alt="addIcon" width={50} height={50} />
         </div>
       </button>
     </div>
