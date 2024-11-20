@@ -9,12 +9,14 @@ import end from '../assets/icons/end.png';
 import vidio1 from '../assets/icons/01.png';
 import vidio2 from '../assets/icons/02.png';
 import vidio3 from '../assets/icons/03.png';
-import img from '../assets/icons/img.png';
+import shop01 from '../assets/icons/001.jpeg';
+import shop02 from '../assets/icons/002.jpeg';
+import shop03 from '../assets/icons/003.jpeg';
 
 const Chatpage = () => {
   return (
     <div className="h-screen flex flex-col lg:flex-row">
-      {/* 사이드바 */}
+      {/* 사이드바. */}
       <aside className="lg:w-20 lg:h-full lg:fixed lg:left-0 lg:top-0 lg:block hidden">
         <SideBarPage />
       </aside>
@@ -35,13 +37,13 @@ const Chatpage = () => {
           {/* 전문가 리스트 */}
           <section className="bg-white pt-4 px-4 rounded-lg">
             <div className="text-xl font-bold mb-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold ">상담 전문가</h2>
+              <h2 className="text-xl font-bold ">외국인 노동자 센터</h2>
               <button className="text-sm border px-4 py-1 rounded-md">더보기</button>
             </div>
-            <div className="grid grid-cols-7">
+            <div className="grid grid-cols-3">
               {/* 전문가 카드 1 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src={img} alt="Expert 1" layout="fill" objectFit="cover" className="rounded-md" />
+              <div className="relative bg-gray-200 w-[400px] h-[228px] rounded-md overflow-hidden">
+                <Image src={shop01} alt="shop01" layout="fill" objectFit="cover" className="rounded-md" />
                 {/* 버튼 영역 */}
                 <div className="absolute bottom-0 w-full flex justify-center items-center space-x-2 py-2">
                   <button className="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">채팅하기</button>
@@ -49,62 +51,28 @@ const Chatpage = () => {
                 </div>
               </div>
 
-              {/* 전문가 카드 2 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert2.png" alt="Expert 2" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
+              <div className="relative bg-gray-200 w-[400px] h-[228px] rounded-md overflow-hidden">
+                <Image src={shop02} alt="shop02" layout="fill" objectFit="cover" className="rounded-md" />
+                {/* 버튼 영역 */}
+                <div className="absolute bottom-0 w-full flex justify-center items-center space-x-2 py-2">
+                  <button className="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">채팅하기</button>
                   <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
                 </div>
               </div>
 
-              {/* 전문가 카드 3 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert3.png" alt="Expert 3" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
-                </div>
-              </div>
-
-              {/* 전문가 카드 4 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert4.png" alt="Expert 4" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
-                </div>
-              </div>
-
-              {/* 전문가 카드 5 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert5.png" alt="Expert 5" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
-                </div>
-              </div>
-
-              {/* 전문가 카드 6 */}
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert6.png" alt="Expert 6" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
-                  <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
-                </div>
-              </div>
-              <div className="relative bg-gray-200 w-[186px] h-[228px] rounded-md overflow-hidden">
-                <Image src="/expert6.png" alt="Expert 6" layout="fill" objectFit="cover" className="rounded-md" />
-                <div className="absolute bottom-0 w-full bg-white/80 flex justify-center items-center space-x-2 py-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">채팅하기</button>
+              <div className="relative bg-gray-200 w-[400px] h-[228px] rounded-md overflow-hidden">
+                <Image src={shop03} alt="shop03" layout="fill" objectFit="cover" className="rounded-md" />
+                {/* 버튼 영역 */}
+                <div className="absolute bottom-0 w-full flex justify-center items-center space-x-2 py-2">
+                  <button className="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">채팅하기</button>
                   <button className="bg-gray-200 px-3 py-1 rounded-md text-sm">예약하기</button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* 진행 중인 채팅과 예약 */}
-          <div className="flex space-x-4">
+          {/* 진행 중인 채팅과 예약 .*/}
+          <div className="flex space-x-4 ">
             {/* 내가 진행 중인 채팅 */}
             <section className="bg-white p-4 rounded-lg  flex-1">
               <h2 className="text-xl font-bold mb-4 flex justify-between items-center">
@@ -202,7 +170,7 @@ const Chatpage = () => {
             </h2>
             <div className="grid grid-cols-3 gap-4">
               {/* 첫 번째 비디오 카드 */}
-              <div className="relative h-48 rounded-md">
+              <div className="relative h-56 rounded-md">
                 <Image src={vidio1} alt="Video 1" layout="fill" objectFit="cover" className="rounded-md" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-gray-800 bg-opacity-50 rounded-full p-2">
@@ -221,7 +189,7 @@ const Chatpage = () => {
               </div>
 
               {/* 두 번째 비디오 카드 */}
-              <div className="relative bg-gray-200 h-48 rounded-md">
+              <div className="relative bg-gray-200 h-56 rounded-md">
                 <Image src={vidio3} alt="Video 2" layout="fill" objectFit="cover" className="rounded-md" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-gray-800 bg-opacity-50 rounded-full p-2">
@@ -240,7 +208,7 @@ const Chatpage = () => {
               </div>
 
               {/* 세 번째 비디오 카드 */}
-              <div className="relative bg-gray-200 h-48 rounded-md">
+              <div className="relative bg-gray-200 h-56 rounded-md">
                 <Image src={vidio2} alt="Video 3" layout="fill" objectFit="cover" className="rounded-md" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-gray-800 bg-opacity-50 rounded-full p-2">
