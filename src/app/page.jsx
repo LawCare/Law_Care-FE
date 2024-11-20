@@ -16,7 +16,7 @@ import shop03 from '../assets/icons/003.jpeg';
 const Chatpage = () => {
   return (
     <div className="h-screen flex flex-col lg:flex-row">
-      {/* 사이드바 */}
+      {/* 사이드바. */}
       <aside className="lg:w-20 lg:h-full lg:fixed lg:left-0 lg:top-0 lg:block hidden">
         <SideBarPage />
       </aside>
