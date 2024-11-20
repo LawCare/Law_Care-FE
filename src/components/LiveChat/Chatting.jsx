@@ -3,8 +3,6 @@ import { TRANSLATIONS, LANGUAGES, LANGUAGE_LABELS, HEADER_MESSAGE, INITIAL_GREET
 import { Smile } from 'lucide-react';
 import Image from 'next/image';
 import addIcon from '@/assets/icons/addition.png';
-import send from '@/assets/icons/send.png';
-import Aa from '@/assets/icons/Aa.png';
 
 const Chatting = ({ onKeywordClick }) => {
   const [messages, setMessages] = useState([]);
@@ -146,7 +144,7 @@ const Chatting = ({ onKeywordClick }) => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
+    <div className="h-[93vh] flex flex-col bg-gray-50">
       {/* 언어 선택 영역*/}
       <div className="max-w-xl mx-auto p-4 pb-0">
         <div className=" items-center space-x-2 text-md rounded-lg border border-gray-400 bg-white">
@@ -195,7 +193,7 @@ const Chatting = ({ onKeywordClick }) => {
         </div>
       </div>
 
-      <div className="flex flex-col h-[550px]">
+      <div className="flex flex-col h-[1000px]">
         {/* 채팅 영역 - 스크롤 가능 */}
         <div className="flex-1 overflow-y-scroll px-4 space-y-4 min-h-[400px] max-h-[600px]">
           {messages.map((message) => (
